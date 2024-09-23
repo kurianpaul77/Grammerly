@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h1 class="text-center">Gramformer Corrector</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="text-center">
+        <!-- <label for="user_input">Enter the text:</label><br> -->
+        <textarea  id="user_input" name="user_input" rows="15" cols="140" placeholder="Enter the sentence..........."></textarea><br>
+        <input class="btn btn-info"  type="submit" value="Submit">
+      </div>
+    </form>
+    <hr>
+    
+    {% if corrected_text %}
+      <h2>Corrected Text:</h2>
+      <p>{{ corrected_text }}</p>
+       
+    {% endif %}
+{% endblock %}
+

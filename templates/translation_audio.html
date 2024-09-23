@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load static %}
+<div class="text-center">
+    <form method="post">
+        {% csrf_token %}
+        <label   for="language" style="font-size: larger;padding: 30px;">Select the language:</label>
+        <select id="language" name="language">
+            <option value="English">English</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Hindi">Hindi</option>
+            <option value="Malayalam">Malayalam</option>
+            <option value="Bengali">Bengali</option>
+            <option value="Punjabi">Punjabi</option>
+            <option value="Tamil">Tamil</option>
+            <option value="Telugu">Telugu</option>
+            <option value="Marathi">Marathi</option>
+            <option value="Gujarati">Gujarati</option>
+            <option value="Kannada">Kannada</option>
+            <option value="French">French</option>
+            <option value="German">German</option>
+            <option value="Italian">Italian</option>
+            <option value="Portuguese">Portuguese</option>
+            <option value="Russian">Russian</option>
+            <option value="Dutch">Dutch</option>
+            <option value="Arabic">Arabic</option>
+            <option value="Turkish">Turkish</option>
+            <option value="Persian">HPersian</option>
+            <option value="Kurdish">Kurdish</option>
+        </select>
+        <br>	  			
+        <input class="btn btn-secondary" type="submit" value="Say Something..">
+    </form>
+</div>
+<div class="text-center">
+       {% if translated_text %}
+        <h2 style="padding:40px 30px 30px 30px;">Translated Text:</h2>
+        <p>{{ translated_text }}</p>
+         <audio controls>
+            <source src="{% static 'output_english.mp3' %}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio> 
+    {% endif %}
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+</div>
+ 
+{% endblock %}

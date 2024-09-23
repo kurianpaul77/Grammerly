@@ -1,0 +1,377 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'style4.css' %}">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+  <div class="mb-3 " style="width:80%;padding:50px 0px 10px 350px;position:relative;">
+    <label class="form-label" style="color:white">(e.g., 'fr' for French)</label>
+    
+    <!-- <input type="text" class="form-control" name="lang_code" placeholder="Preferred language" lang="en"> -->
+    <input list="languages" name="lang_code" class="form-control" placeholder="Enter language code" lang="en">
+        <datalist id="languages">
+      <option value="">Select language</option>
+      <option value="Afrikaans"></option>
+      <option value="Albanian"></option>
+      <option value="Amharic"></option>
+      <option value="Arabic"></option>
+      <option value="Armenian"></option>
+      <option value="Azerbaijani"></option>
+      <option value="Basque"></option>
+      <option value="Belarusian"></option>
+      <option value="Bengali"></option>
+      <option value="Bosnian"></option>
+      <option value="Bulgarian"></option>
+      <option value="Catalan"></option>
+      <option value="Cebuano"></option>
+      <option value="Chichewa"></option>
+      <option value="Chinese (Simplified)"></option>
+      <option value="Chinese (Traditional)"></option>
+      <option value="Corsican"></option>
+      <option value="Croatian"></option>
+      <option value="Czech"></option>
+      <option value="Danish"></option>
+      <option value="Dutch"></option>
+      <option value="English"></option>
+      <option value="Esperanto"></option>
+      <option value="Estonian"></option>
+      <option value="Filipino"></option>
+      <option value="Finnish"></option>
+      <option value="French"></option>
+      <option value="Frisian"></option>
+      <option value="Galician"></option>
+      <option value="Georgian"></option>
+      <option value="German"></option>
+      <option value="Greek"></option>
+      <option value="Gujarati"></option>
+      <option value="Haitian Creole"></option>
+      <option value="Hausa"></option>
+      <option value="Hawaiian"></option>
+      <option value="Hebrew"></option>
+      <option value="Hebrew"></option>
+      <option value="Hindi"></option>
+      <option value="Hmong"></option>
+      <option value="Hungarian"></option>
+      <option value="Icelandic"></option>
+      <option value="Igbo"></option>
+      <option value="Indonesian"></option>
+      <option value="Irish"></option>
+      <option value="Italian"></option>
+      <option value="Japanese"></option>
+      <option value="Javanese"></option>
+      <option value="Kannada"></option>
+      <option value="Kazakh"></option>
+      <option value="Khmer"></option>
+      <option value="Korean"></option>
+      <option value="Kurdish (Kurmanji)"></option>
+      <option value="Kyrgyz"></option>
+      <option value="Lao"></option>
+      <option value="Latin"></option>
+      <option value="Latvian"></option>
+      <option value="Lithuanian"></option>
+      <option value="Luxembourgish"></option>
+      <option value="Macedonian"></option>
+      <option value="Malagasy"></option>
+      <option value="Malay"></option>
+      <option value="Malayalam"></option>
+      <option value="Maltese"></option>
+      <option value="Maori"></option>
+      <option value="Marathi"></option>
+      <option value="Mongolian"></option>
+      <option value="Myanmar (Burmese)"></option>
+      <option value="Nepali"></option>
+      <option value="Norwegian"></option>
+      <option value="Odia"></option>
+      <option value="Pashto"></option>
+      <option value="Persian"></option>
+      <option value="Polish"></option>
+      <option value="Portuguese"></option>
+      <option value="Punjabi"></option>
+      <option value="Romanian"></option>
+      <option value="Russian"></option>
+      <option value="Samoan"></option>
+      <option value="Scots Gaelic"></option>
+      <option value="Serbian"></option>
+      <option value="Sesotho"></option>
+      <option value="Shona"></option>
+      <option value="Sindhi"></option>
+      <option value="Sinhala"></option>
+      <option value="Slovak"></option>
+      <option value="Slovenian"></option>
+      <option value="Somali"></option>
+      <option value="Spanish"></option>
+      <option value="Sundanese"></option>
+      <option value="Swahili"></option>
+      <option value="Swedish"></option>
+      <option value="Tajik"></option>
+      <option value="Tamil"></option>
+      <option value="Telugu"></option>
+      <option value="Thai"></option>
+      <option value="Turkish"></option>
+      <option value="Ukrainian"></option>
+      <option value="Urdu"></option>
+      <option value="Uyghur"></option>
+      <option value="Uzbek"></option>
+      <option value="Vietnamese"></option>
+      <option value="Welsh"></option>
+      <option value="Xhosa"></option>
+      <option value="Yiddish"></option>
+      <option value="Yoruba"></option>
+      <option value="Zulu"></option>
+</select>
+</datalist>
+
+    <!-- {% comment %} <input type="text" class="form-control" name="lang_code"  id="lang_codes" placeholder="Preffered language"> {% endcomment %} -->
+  </div >
+  <input type="submit" class="btn btn-warning" style="position:absolute;left:350px;">
+</form>
+  <!-- <div style="position:absolute;right:80px;top:90px;bottom:30px;color:white;padding:20px; overflow-y: auto; max-height: 80vh;">
+    <h5>Supported Languages:</h5>
+    af: afrikaans<br>
+sq: albanian<br>
+am: amharic<br>
+ar: arabic<br>
+hy: armenian<br>
+az: azerbaijani<br>
+<div id="languageList">
+eu: basque<br>
+be: belarusian<br>
+bn: bengali<br>
+bs: bosnian<br>
+bg: bulgarian<br>
+ca: catalan<br>
+ceb: cebuano<br>
+ny: chichewa<br>
+zh-cn: chinese (simplified)<br>
+zh-tw: chinese (traditional)<br>
+co: corsican<br>
+hr: croatian<br>
+cs: czech<br>
+da: danish<br>
+nl: dutch<br>
+en: english<br>
+eo: esperanto<br>
+et: estonian<br>
+tl: filipino<br>
+fi: finnish<br>
+fr: french<br>
+fy: frisian<br>
+gl: galician<br>
+ka: georgian<br>
+de: german<br>
+el: greek<br>
+gu: gujarati<br>
+ht: haitian creole<br>
+ha: hausa<br>
+haw: hawaiian<br>
+iw: hebrew<br>
+
+he: hebrew<br>
+hi: hindi<br>
+hmn: hmong<br>
+hu: hungarian<br>
+is: icelandic<br>
+ig: igbo<br>
+id: indonesian<br>
+ga: irish<br>
+it: italian<br>
+ja: japanese<br>
+jw: javanese<br>
+kn: kannada<br>
+kk: kazakh<br>
+km: khmer<br>
+ko: korean<br>
+ku: kurdish (kurmanji)<br>
+ky: kyrgyz<br>
+lo: lao<br>
+la: latin<br>
+lv: latvian<br>
+lt: lithuanian<br>
+lb: luxembourgish<br>
+mk: macedonian<br>
+mg: malagasy<br>
+ms: malay<br>
+ml: malayalam<br>
+mt: maltese<br>
+mi: maori<br>
+mr: marathi<br>
+mn: mongolian<br>
+my: myanmar (burmese)<br>
+ne: nepali<br>
+no: norwegian<br>
+or: odia<br>
+ps: pashto<br>
+fa: persian<br>
+pl: polish<br>
+pt: portuguese<br>
+pa: punjabi<br>
+ro: romanian<br>
+ru: russian<br>
+sm: samoan<br>
+gd: scots gaelic<br>
+sr: serbian<br>
+st: sesotho<br>
+sn: shona<br>
+sd: sindhi<br>
+si: sinhala<br>
+sk: slovak<br>
+sl: slovenian<br>
+so: somali<br>
+es: spanish<br>
+su: sundanese<br>
+sw: swahili<br>
+sv: swedish<br>
+tg: tajik<br>
+ta: tamil<br>
+te: telugu<br>
+th: thai<br>
+tr: turkish<br>
+uk: ukrainian<br>
+ur: urdu<br>
+ug: uyghur<br>
+uz: uzbek<br>
+vi: vietnamese<br>
+cy: welsh<br>
+xh: xhosa<br>
+yi: yiddish<br>
+yo: yoruba<br>
+zu: zulu<br>
+  </div> -->
+ <!-- </div> -->
+
+<!-- {% comment %} <div style="position:absolute;right:350px;">
+    <a class="btn btn-danger" id="toggleButton">Read More</a>
+ </div> {% endcomment %} -->
+    <script>
+      const languages = {
+            'af': 'afrikaans',
+            'sq': 'albanian',
+            'am': 'amharic',
+            'ar': 'arabic',
+            'hy': 'armenian',
+            'az': 'azerbaijani',
+            'eu': 'basque',
+            'be': 'belarusian',
+            'bn': 'bengali',
+            'bs': 'bosnian',
+            'bg': 'bulgarian',
+            'ca': 'catalan',
+            'ceb': 'cebuano',
+            'ny': 'chichewa',
+            'zh-cn': 'chinese (simplified)',
+            'zh-tw': 'chinese (traditional)',
+            'co': 'corsican',
+            'hr': 'croatian',
+            'cs': 'czech',
+            'da': 'danish',
+            'nl': 'dutch',
+            'en': 'english',
+            'eo': 'esperanto',
+            'et': 'estonian',
+            'tl': 'filipino',
+            'fi': 'finnish',
+            'fr': 'french',
+            'fy': 'frisian',
+            'gl': 'galician',
+            'ka': 'georgian',
+            'de': 'german',
+            'el': 'greek',
+            'gu': 'gujarati',
+            'ht': 'haitian creole',
+            'ha': 'hausa',
+            'haw': 'hawaiian',
+            'iw': 'hebrew',
+            'he': 'hebrew',
+            'hi': 'hindi',
+            'hmn': 'hmong',
+            'hu': 'hungarian',
+            'is': 'icelandic',
+            'ig': 'igbo',
+            'id': 'indonesian',
+            'ga': 'irish',
+            'it': 'italian',
+            'ja': 'japanese',
+            'jw': 'javanese',
+            'kn': 'kannada',
+            'kk': 'kazakh',
+            'km': 'khmer',
+            'ko': 'korean',
+            'ku': 'kurdish (kurmanji)',
+            'ky': 'kyrgyz',
+            'lo': 'lao',
+            'la': 'latin',
+            'lv': 'latvian',
+            'lt': 'lithuanian',
+            'lb': 'luxembourgish',
+            'mk': 'macedonian',
+            'mg': 'malagasy',
+            'ms': 'malay',
+            'ml': 'malayalam',
+            'mt': 'maltese',
+            'mi': 'maori',
+            'mr': 'marathi',
+            'mn': 'mongolian',
+            'my': 'myanmar (burmese)',
+            'ne': 'nepali',
+            'no': 'norwegian',
+            'or': 'odia',
+            'ps': 'pashto',
+            'fa': 'persian',
+            'pl': 'polish',
+            'pt': 'portuguese',
+            'pa': 'punjabi',
+            'ro': 'romanian',
+            'ru': 'russian',
+            'sm': 'samoan',
+            'gd': 'scots gaelic',
+            'sr': 'serbian',
+            'st': 'sesotho',
+            'sn': 'shona',
+            'sd': 'sindhi',
+            'si': 'sinhala',
+            'sk': 'slovak',
+            'sl': 'slovenian',
+            'so': 'somali',
+            'es': 'spanish',
+            'su': 'sundanese',
+            'sw': 'swahili',
+            'sv': 'swedish',
+            'tg': 'tajik',
+            'ta': 'tamil',
+            'te': 'telugu',
+            'th': 'thai',
+            'tr': 'turkish',
+            'uk': 'ukrainian',
+            'ur': 'urdu',
+            'ug': 'uyghur',
+            'uz': 'uzbek',
+            'vi': 'vietnamese',
+            'cy': 'welsh',
+            'xh': 'xhosa',
+            'yi': 'yiddish',
+            'yo': 'yoruba',
+            'zu': 'zulu'
+        };
+    const languageList = document.getElementById('languageList');
+    const toggleButton = document.getElementById('toggleButton');
+    const moreText = 'Read More';
+    const lessText = 'Read Less';
+
+    let isExpanded = false;
+
+    toggleButton.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+
+        if (isExpanded) {
+            languageList.style.display = 'block';
+            toggleButton.textContent = lessText;
+        } else {
+            languageList.style.display = 'none';
+            toggleButton.textContent = moreText;
+        }
+    });
+       
+</script>
+
+
+{% endblock %}

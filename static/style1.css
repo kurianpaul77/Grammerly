@@ -1,0 +1,26 @@
+.body1{
+    position:relative;background:rgb(119, 119, 230);
+}
+.x1{
+    position:absolute;top:150px;left:100px;
+}
+.x2{
+    position:absolute;top:150px;left:400px;
+}
+.x3{
+    position:absolute;top:150px;left:700px
+}
+.x4{
+    position:absolute;top:150px;left:1000px
+}
+.p1{
+    color:white;font-size:30px;
+}
+
+a:hover{
+        background-color: rgba(7, 7, 7, 0.595);
+    
+}
+
+
+

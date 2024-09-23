@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'chatbot.css' %}">
+<div class="bg-video">
+        <!-- Replace 'video.mp4' with your video file -->
+        <video autoplay muted loop id="video-bg">
+            <source src="{% static 'video/bg.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="chat-container">
+            <div class="chat-box" id="chatBox">
+                <div class="bot-message">
+                    <p>Welcome to Chatbot. How can I assist you?</p>
+                </div>
+            </div>
+            <form id="chatForm">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="inputText" placeholder="Type your message">
+                    <button type="submit" class="btn btn-primary" id="sendBtn">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#chatForm').submit(function(event) {
+                event.preventDefault();
+                var inputText = $('#inputText').val();
+                if (inputText.trim() === '') return;
+
+                // Display user message
+                $('#chatBox').append('<div class="user-message"><p>' + inputText + '</p></div>');
+                $('#inputText').val('');
+                $('#chatBox').scrollTop($('#chatBox')[0].scrollHeight);
+
+                // Send user message to server
+                $.ajax({
+                    url: '{% url "application:chatbot" %}',
+                    type: 'POST',
+                    data: {input_text: inputText},
+                    success: function(response) {
+                        // Display bot response
+                        $('#chatBox').append('<div class="bot-message"><p>' + response.response + '</p></div>');
+                        $('#chatBox').scrollTop($('#chatBox')[0].scrollHeight);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
